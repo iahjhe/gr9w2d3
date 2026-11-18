@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Transforming Quadratic Functions</title>
+<style>
+:root{--ink:#14213d;--mut:#5b6b85;--bg:#f4f8fb;--card:#fff;--line:#c9d8e6;--b:#2563eb;--r:#e11d48;--g:#15803d;--o:#d97706}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{font-family:"Trebuchet MS","Segoe UI",sans-serif;color:var(--ink);background:var(--bg);
+background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:32px 32px;background-position:-1px -1px}
+section{display:none;position:absolute;inset:0 0 48px;padding:28px 5vw 12px;overflow:auto;flex-direction:column;gap:14px}
+section.on{display:flex}
+h1{font-size:clamp(30px,5vw,56px);margin:0;line-height:1.1}
+h2{font-size:clamp(22px,3vw,34px);margin:0}
+p,li{font-size:clamp(15px,1.7vw,21px);line-height:1.5;margin:4px 0;max-width:70ch}
+.sub{color:var(--mut)}
+.row{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}.row>*{flex:1 1 320px}
+.box{background:var(--card);border:2px solid var(--ink);border-radius:6px;padding:14px 18px}
+.box.b{border-color:var(--b)}.box.r{border-color:var(--r)}.box.g{border-color:var(--g)}.box.o{border-color:var(--o)}
+.f{font-family:Georgia,serif;font-size:clamp(22px,3.4vw,40px);font-style:italic;text-align:center;padding:10px}
+.tag{display:inline-block;background:var(--ink);color:#fff;padding:3px 10px;border-radius:4px;font-size:14px}
+canvas{width:100%;max-width:560px;background:#fff;border:2px solid var(--ink);border-radius:6px;display:block}
+.ctl{display:flex;align-items:center;gap:10px;margin:6px 0;font-size:18px}.ctl input{flex:1}.ctl b{min-width:70px}
+.ro{font-size:17px;line-height:1.6}
+table{border-collapse:collapse;background:#fff;font-size:16px;margin:6px 0}
+td,th{border:1.5px solid var(--ink);padding:4px 12px;text-align:center}th{background:var(--ink);color:#fff}
+button,summary{font:inherit;cursor:pointer}
+details{background:#fff;border:2px dashed var(--g);border-radius:6px;padding:8px 14px;margin-top:8px}
+.opt{display:block;width:100%;text-align:left;margin:5px 0;padding:8px 12px;border:2px solid var(--line);background:#fff;border-radius:6px;font-size:17px}
+.opt:hover{border-color:var(--b)}.opt.ok{background:#dcfce7;border-color:var(--g)}.opt.no{background:#ffe4e6;border-color:var(--r)}
+#bar{position:fixed;left:0;right:0;bottom:0;height:48px;background:var(--ink);color:#fff;display:flex;align-items:center;gap:12px;padding:0 16px}
+#bar button{background:#fff;color:var(--ink);border:0;border-radius:4px;padding:6px 14px}
+#bar span{flex:1;font-size:15px}#prog{position:fixed;top:0;left:0;height:5px;background:var(--b);transition:width .3s}
+:focus-visible{outline:3px solid var(--o);outline-offset:2px}
+@media print{section{display:flex!important;position:static;page-break-after:always}#bar,#prog{display:none}}
+</style></head><body>
+<div id="prog"></div>
+
+<section data-t="Intro · 1 min">
+<span class="tag">Grade 9 Mathematics · 45 minutes</span>
+<h1>Moving Parabolas: What do a, h and k do?</h1>
+<p class="sub">Quadratic functions in the form y = a(x − h)² + k</p>
+<div class="f box">y = a(x − h)² + k</div>
+<p>Use ← → keys or the buttons below. Every graph on the slides is interactive. Press <b>F</b> for full screen.</p>
+</section>
+
+<section data-t="Intro · 3 min">
+<h2>Today’s goals and plan</h2>
+<div class="row"><div class="box b"><b>By the end you can…</b><ul><li>Name the vertex, axis of symmetry and opening of a parabola</li><li>Explain how a, h and k change the graph</li><li>Sketch a parabola from its equation</li></ul></div>
+<table><tr><th>Part</th><th>Minutes</th></tr><tr><td>Review: parent function</td><td>5</td></tr><tr><td>A: the effect of a</td><td>9</td></tr><tr><td>B: the effect of h</td><td>9</td></tr><tr><td>C: the effect of k</td><td>9</td></tr><tr><td>Playground + quiz</td><td>8</td></tr><tr><td>Summary + exit ticket</td><td>5</td></tr></table></div>
+<div class="box o"><b>Warm-up (1 min):</b> Think of a ball thrown in the air. What shape does its path make?</div>
+</section>
+
+<section data-t="Review · 5 min">
+<h2>The parent function: y = x²</h2>
+<p>A parent function is the most basic form of a group of functions. Every other parabola in this lesson comes from y = x².</p>
+<div class="row"><div><div class="graph" data-mode="static" data-curves="1,0,0,#2563eb"></div></div>
+<div><div class="box b"><b>Key facts</b><ul><li>Vertex: (0, 0)</li><li>Axis of symmetry: x = 0</li><li>Opens upward</li></ul></div><br><div data-tbl="1,0,0"></div>
+<p class="sub">Notice the table is symmetric: f(2) = f(−2).</p></div></div>
+</section>
+
+<section data-t="Review · 3 min">
+<h2>Reading the equation: three parameters</h2>
+<div class="f box">y = <span style="color:var(--r)">a</span>(x − <span style="color:var(--g)">h</span>)² + <span style="color:var(--o)">k</span></div>
+<div class="row"><div class="box r"><b>a</b> changes the width and direction.<br>Wider, narrower, or flipped.</div><div class="box g"><b>h</b> moves the graph left or right.<br>Vertex x-value.</div><div class="box o"><b>k</b> moves the graph up or down.<br>Vertex y-value.</div></div>
+<p>So the <b>vertex is (h, k)</b> and the <b>axis of symmetry is x = h</b>.</p>
+<div class="box"><b>Quick check:</b> Where is the vertex of y = 2(x − 3)² + 5? <details><summary>Show answer</summary>(3, 5). Axis: x = 3. Opens upward because a = 2 is positive.</details></div>
+</section>
+
+<section data-t="Part A · 4 min">
+<span class="tag">Part A</span><h2>The effect of a on f(x) = ax²</h2>
+<div class="row"><div class="graph" data-mode="a"></div>
+<div><div class="box r"><ul><li>If a &gt; 1, the graph is <b>narrower</b> and steeper.</li><li>If 0 &lt; a &lt; 1, the graph is <b>wider</b> and flatter.</li><li>If a &lt; 0, the graph <b>opens downward</b>.</li></ul></div>
+<p class="sub">Try it: drag the slider and watch the blue curve against the dashed parent.</p></div></div>
+</section>
+
+<section data-t="Part A · 3 min">
+<h2>Worked examples: 2x², ½x², 4x², 7x²</h2>
+<div class="row"><div class="graph" data-mode="static" data-curves="2,0,0,#e11d48;0.5,0,0,#15803d;1,0,0,#9ca3af" data-cap="red: 2x² · green: ½x² · gray: x²"></div>
+<div><div class="row"><div data-tbl="2,0,0"></div><div data-tbl="0.5,0,0"></div></div>
+<div class="box b">Same vertex (0,0) and axis x = 0. 2x² is narrower than x². ½x² is wider than x².<br><b>The bigger |a| is, the narrower the graph.</b></div></div></div>
+</section>
+
+<section data-t="Activity 1 · 3 min">
+<span class="tag">Activity 1 · Exercise 7</span><h2>Narrower or wider? Work in pairs</h2>
+<div class="row"><div class="box">
+<b>Set 1:</b> f(x) = 2x² and f(x) = 3x²<br><b>Set 2:</b> f(x) = −½x² and f(x) = −2x²
+<p>1. Make a table of values for x = −2 to 2.<br>2. Sketch both graphs on graph paper.<br>3. Which graph is narrower? Which way does each open?</p></div>
+<div><div class="graph" data-mode="static" data-curves="2,0,0,#2563eb;3,0,0,#e11d48;-0.5,0,0,#15803d;-2,0,0,#d97706"></div></div></div>
+<details><summary>Check answers</summary>Set 1: 3x² is narrower (larger |a|). Both open upward. Set 2: −2x² is narrower than −½x². Both open <b>downward</b> because a is negative. <b>Answer:</b> |a| controls width, and the sign of a controls direction.</details>
+</section>
+
+<section data-t="Part B · 4 min">
+<span class="tag">Part B</span><h2>The effect of h on f(x) = a(x − h)²</h2>
+<div class="row"><div class="graph" data-mode="h"></div>
+<div><div class="box g"><ul><li>If h &gt; 0, the graph moves <b>right</b>.</li><li>If h &lt; 0, the graph moves <b>left</b>.</li><li>The shape stays the same. Only the position changes.</li></ul></div>
+<div class="box o"><b>Watch the sign!</b> (x + 3)² means h = −3, so the graph moves 3 units <b>left</b>.</div></div></div>
+</section>
+
+<section data-t="Part B · 2 min">
+<h2>Worked examples: (x + 1)² and (x − 1)²</h2>
+<div class="row"><div class="graph" data-mode="static" data-curves="1,-1,0,#e11d48;1,1,0,#15803d;1,0,0,#9ca3af" data-cap="red: (x+1)² · green: (x−1)² · gray: x²"></div>
+<div><div class="row"><div data-tbl="1,-1,0"></div><div data-tbl="1,1,0"></div></div>
+<div class="box g">(x + 1)²: vertex (−1, 0), axis x = −1, moves left.<br>(x − 1)²: vertex (1, 0), axis x = 1, moves right.</div></div></div>
+</section>
+
+<section data-t="Part B · 3 min">
+<h2>Another pair: 2(x + 2)² and 2(x + 3)²</h2>
+<div class="row"><div class="graph" data-mode="static" data-curves="2,-2,0,#2563eb;2,-3,0,#e11d48" data-cap="blue: 2(x+2)² · red: 2(x+3)²"></div>
+<div class="box g">Both graphs move left of the origin. The axes of symmetry are x = −2 and x = −3. <b>Same shape, different positions</b>, because they have the same a = 2.
+<p class="sub">Both open upward with vertices at (−2, 0) and (−3, 0).</p></div></div>
+</section>
+
+<section data-t="Activity 2 · 2 min">
+<span class="tag">Activity 2 · Exercise 8</span><h2>Left or right? Human parabola</h2>
+<div class="box"><b>Graph on paper, then decide if each moves left or right of f(x) = x²:</b>
+<p>1. f(x) = (x + 4)² and f(x) = (x + 5)²<br>2. f(x) = (x − 2)² and f(x) = (x − 3)²</p>
+<p><b>Question:</b> Is there a difference in the graph of the two functions? Why?</p></div>
+<div class="box o"><b>Movement option:</b> Stand at x = 0 on a number line on the floor. Step to the vertex x-value of each function called out.</div>
+<details><summary>Check answers</summary>Set 1 moves left (vertices (−4,0) and (−5,0)). Set 2 moves right (vertices (2,0) and (3,0)). Within each pair the shape is identical. They differ only in position because h is different.</details>
+</section>
+
+<section data-t="Part C · 4 min">
+<span class="tag">Part C</span><h2>The effect of k on f(x) = ax² + k</h2>
+<div class="row"><div class="graph" data-mode="k"></div>
+<div><div class="box o"><ul><li>If k &gt; 0, the graph moves <b>up</b>.</li><li>If k &lt; 0, the graph moves <b>down</b>.</li><li>The vertex is (0, k). The axis of symmetry stays x = 0.</li></ul></div>
+<p class="sub">Common slip: k moves the graph vertically but does not change the axis of symmetry.</p></div></div>
+</section>
+
+<section data-t="Part C · 3 min">
+<h2>Worked examples</h2>
+<div class="row"><div class="graph" data-mode="static" data-curves="1,0,3,#e11d48;1,0,2,#7c3aed;1,0,1,#15803d;1,0,-2,#2563eb;1,0,0,#9ca3af" data-cap="x²+3, x²+2, x²+1, x²−2, and x² (gray)"></div>
+<div><div class="row"><div data-tbl="1,0,2"></div><div data-tbl="1,0,-2"></div></div>
+<div class="box o">x² + 2: vertex (0, 2), up 2. x² − 2: vertex (0, −2), down 2. Each y-value in the table shifts by k.</div></div></div>
+</section>
+
+<section data-t="Activity 3 · 2 min">
+<span class="tag">Activity 3 · Exercise 9</span><h2>Up or down? Vertex race</h2>
+<div class="box"><b>Graph and decide if each translates upward or downward:</b>
+<p>1. y = x² + 3 and y = x² − 2<br>2. y = x² − 3 and y = x² − 4</p>
+<p><b>Question:</b> Is there a difference in the graph of the two functions? How?</p></div>
+<div class="box o"><b>Race:</b> Teams write the vertex of each function. First correct team scores a point.</div>
+<details><summary>Check answers</summary>Set 1: vertices (0, 3) and (0, −2). The first moves up, the second moves down. Set 2: vertices (0, −3) and (0, −4). Both move down, and x² − 4 is 1 unit lower than x² − 3. Same shape, different heights.</details>
+</section>
+
+<section data-t="Playground · 5 min">
+<h2>Playground: change a, h and k together</h2>
+<div class="row"><div class="graph" data-mode="all"></div>
+<div class="box"><b>Challenges</b><ol><li>Make a parabola with vertex (2, −3).</li><li>Make one that is narrower than x² and opens downward.</li><li>Find a, h, k so the vertex is (−4, 5).</li><li>Can you change the shape without moving the vertex? Which letter?</li></ol></div></div>
+</section>
+
+<section data-t="Quiz · 4 min">
+<h2>Quick quiz</h2><p class="sub">Tap an answer. Green is correct.</p><div id="quiz"></div>
+</section>
+
+<section data-t="Wrap-up · 4 min">
+<h2>Summary</h2>
+<table><tr><th>Letter</th><th>What it does</th><th>Rule</th></tr>
+<tr><td>a</td><td>Width and direction</td><td>|a| &gt; 1 narrower · 0 &lt; |a| &lt; 1 wider · a &lt; 0 opens down</td></tr>
+<tr><td>h</td><td>Left or right</td><td>h &gt; 0 right · h &lt; 0 left · axis x = h</td></tr>
+<tr><td>k</td><td>Up or down</td><td>k &gt; 0 up · k &lt; 0 down</td></tr></table>
+<div class="box b"><b>Big idea:</b> y = a(x − h)² + k has vertex (h, k) and axis of symmetry x = h.</div>
+</section>
+
+<section data-t="Wrap-up · 1 min">
+<h2>Exit ticket</h2>
+<div class="box o"><p>On a half sheet of paper:</p><ol><li>What happens to the graph when you change <b>a</b>?</li><li>What happens when you change <b>h</b>?</li><li>What happens when you change <b>k</b>?</li><li>Give the vertex of y = −3(x + 2)² − 1.</li></ol>
+<details><summary>Answer to 4</summary>(−2, −1). It opens downward and is narrower than x².</details></div>
+<p class="sub">Homework: finish Exercises 7, 8 and 9 on graphing paper.</p>
+</section>
+
+<div id="bar"><button id="pv">← Back</button><span id="lab"></span><button id="nx">Next →</button></div>
+
+<script>
+const S=[...document.querySelectorAll('section')];let i=0;
+function show(n){i=Math.max(0,Math.min(S.length-1,n));S.forEach((s,j)=>s.classList.toggle('on',j===i));
+document.getElementById('lab').textContent=`Slide ${i+1} of ${S.length} · ${S[i].dataset.t||''}`;
+document.getElementById('prog').style.width=((i+1)/S.length*100)+'%';location.hash=i+1}
+pv.onclick=()=>show(i-1);nx.onclick=()=>show(i+1);
+addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')show(i+1);if(e.key==='ArrowLeft')show(i-1);
+if(e.key==='f'||e.key==='F')document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()});
+const fmt=n=>Number.isInteger(n)?n:+n.toFixed(2);
+function graph(el){
+ const m=el.dataset.mode,W=560,H=420,cv=document.createElement('canvas');cv.width=W;cv.height=H;el.appendChild(cv);
+ const c=cv.getContext('2d'),st={a:1,h:0,k:0},X=x=>W/2+x*W/14,Y=y=>H*(9-y)/14;
+ let curves=[];if(m==='static')curves=el.dataset.curves.split(';').map(s=>{const p=s.split(',');return{a:+p[0],h:+p[1],k:+p[2],c:p[3]}});
+ const ro=document.createElement('div');ro.className='ro';
+ function draw(){c.clearRect(0,0,W,H);c.lineWidth=1;c.strokeStyle='#dbe6f0';
+  for(let x=-7;x<=7;x++){c.beginPath();c.moveTo(X(x),0);c.lineTo(X(x),H);c.stroke()}
+  for(let y=-5;y<=9;y++){c.beginPath();c.moveTo(0,Y(y));c.lineTo(W,Y(y));c.stroke()}
+  c.strokeStyle='#14213d';c.lineWidth=2;c.beginPath();c.moveTo(X(0),0);c.lineTo(X(0),H);c.moveTo(0,Y(0));c.lineTo(W,Y(0));c.stroke();
+  c.fillStyle='#14213d';c.font='11px sans-serif';
+  for(let x=-6;x<=6;x+=2)if(x)c.fillText(x,X(x)-4,Y(0)+13);for(let y=-4;y<=8;y+=2)if(y)c.fillText(y,X(0)+4,Y(y)+4);
+  const plot=(a,h,k,col,dash)=>{c.beginPath();c.strokeStyle=col;c.lineWidth=3;c.setLineDash(dash?[6,5]:[]);
+   for(let px=0;px<=W;px+=2){const x=(px-W/2)*14/W,y=a*(x-h)**2+k;px?c.lineTo(px,Y(y)):c.moveTo(px,Y(y))}c.stroke();c.setLineDash([]);
+   c.fillStyle=col;c.beginPath();c.arc(X(h),Y(k),5,0,7);c.fill()};
+  if(m==='static')curves.forEach(q=>plot(q.a,q.h,q.k,q.c));
+  else{plot(1,0,0,'#9ca3af',1);plot(st.a,st.h,st.k,'#2563eb');
+   ro.innerHTML=`<b>y = ${fmt(st.a)}(x ${st.h<0?'+ '+(-st.h):'− '+st.h})² ${st.k<0?'− '+(-st.k):'+ '+st.k}</b><br>Vertex: (${st.h}, ${st.k}) · Axis: x = ${st.h}<br>Opens ${st.a>0?'upward':'downward'} · ${Math.abs(st.a)>1?'narrower':Math.abs(st.a)<1?'wider':'same width'} than x²`}}
+ const sl=(l,min,max,step,key,col)=>{const d=document.createElement('div');d.className='ctl';
+  d.innerHTML=`<b style="color:${col}">${l} = <span>${st[key]}</span></b><input type="range" min="${min}" max="${max}" step="${step}" value="${st[key]}" aria-label="${l}">`;
+  const r=d.querySelector('input');r.oninput=()=>{st[key]=+r.value;d.querySelector('span').textContent=st[key];if(st.a===0){st.a=.5*(+r.value>=0?1:-1)}draw()};el.appendChild(d)};
+ if(m==='a'||m==='all')sl('a',-4,4,.5,'a','#e11d48');if(m==='h'||m==='all')sl('h',-5,5,1,'h','#15803d');if(m==='k'||m==='all')sl('k',-4,6,1,'k','#d97706');
+ if(m!=='static')el.appendChild(ro);if(el.dataset.cap){const p=document.createElement('p');p.className='sub';p.textContent=el.dataset.cap;el.appendChild(p)}
+ draw()}
+document.querySelectorAll('.graph').forEach(graph);
+document.querySelectorAll('[data-tbl]').forEach(el=>{const[a,h,k]=el.dataset.tbl.split(',').map(Number);
+ const xs=[-2,-1,0,1,2].map(d=>d+(h||0));
+ el.innerHTML=`<table><tr><th>x</th><th>${fmt(a)==1?'':fmt(a)}(x${h?(h<0?' + '+(-h):' − '+h):''})²${k?(k<0?' − '+(-k):' + '+k):''}</th></tr>`+xs.map(x=>`<tr><td>${x}</td><td>${fmt(a*(x-h)**2+k)}</td></tr>`).join('')+'</table>'});
+const Q=[['Vertex of y = (x − 4)² + 1?',['(4, 1)','(−4, 1)','(4, −1)'],0],['Which is narrowest?',['y = ½x²','y = x²','y = 5x²'],2],['y = (x + 3)² moves…',['3 units right','3 units left','3 units up'],1],['y = x² − 4 compared with y = x²:',['4 units down','4 units left','Narrower'],0],['y = −2x² opens…',['Upward','Downward','Sideways'],1]];
+quiz.innerHTML=Q.map((q,n)=>`<div class="box" style="margin-bottom:8px"><b>${n+1}. ${q[0]}</b>${q[1].map((o,j)=>`<button class="opt" data-q="${n}" data-j="${j}">${o}</button>`).join('')}</div>`).join('');
+quiz.onclick=e=>{const b=e.target.closest('.opt');if(!b)return;b.classList.add(+b.dataset.j===Q[b.dataset.q][2]?'ok':'no')};
+show((+location.hash.slice(1)||1)-1);
+</script></body></html>
